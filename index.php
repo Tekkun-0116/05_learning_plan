@@ -9,7 +9,7 @@ $dbh = connectDb();
 $sql = "select * from plans where status = 'notyet'";
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
-$notyet_tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$notyet_plans = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // レコードの取得(完成の場合)
 $sql2 = "select * from plans where status = 'done'";
@@ -59,21 +59,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
   <h1>学習管理アプリ</h1>
-  <p>
     <form action="" method="post">学習内容:
       <input type="text" name="title" id=""><br>
       期限日:
       <input type="date" name="due_date" id="">
       <input type="submit" value="追加"><br>
-      <?php if (count($errors) > 0) : ?>
+      <?php if ($errors) : ?>
         <ul style="color:red;">
-          <?php foreach ($errors as $key => $value) : ?>
-            <li><?php echo h($value); ?></li>
+          <?php foreach ($errors as $error) : ?>
+            <li>
+              <?php echo h($error); ?>
+            </li>
           <?php endforeach; ?>
         </ul>
-      <?php endif; ?>
+      <? endif; ?>
     </form>
-  </p>
 
 <h2>未達成</h2>
   <ul>

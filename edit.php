@@ -13,7 +13,7 @@ $stmt = $dbh->prepare($sql);
 $stmt->bindParam(":id", $id);
 $stmt->execute();
 
-$task = $stmt->fetch(PDO::FETCH_ASSOC);
+$plan = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
@@ -23,11 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $errors = [];
   
   if ($title == $plan['title']) {
-    $errors['title'] = 'タスク名を入力して下さい';
+    $errors['title'] = 'タスク名が変更されていません';
   }
 
   if ($due_date == $plan['due_date']) {
-    $errors['due_date'] = '期限を入力して下さい';
+    $errors['due_date'] = '日付が変更されていません';
   }
 
   if (empty($errors)) {
@@ -62,13 +62,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     期限日:
     <input type="date" name="due_date" id="" value="<?php echo  h($plan['due_date']); ?>"> 
     <input type="submit" value="編集"><br>
-    <?php if (count($errors) > 0) : ?>
+    <?php if ($errors) : ?>
       <ul style="color:red;">
-        <?php foreach ($errors as $key => $value) : ?>
-          <li><?php echo h($value); ?></li>
+        <?php foreach ($errors as $error) : ?>
+          <li>
+            <?php echo h($error); ?>
+          </li>
         <?php endforeach; ?>
       </ul>
-    <?php endif; ?>
+    <? endif; ?>
     </form>
   </p>
   </form>
