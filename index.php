@@ -59,21 +59,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
   <h1>学習管理アプリ</h1>
-    <form action="" method="post">学習内容:
-      <input type="text" name="title" id=""><br>
-      期限日:
-      <input type="date" name="due_date" id="">
-      <input type="submit" value="追加"><br>
-      <?php if ($errors) : ?>
-        <ul style="color:red;">
-          <?php foreach ($errors as $error) : ?>
-            <li>
-              <?php echo h($error); ?>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-      <? endif; ?>
-    </form>
+  <form action="" method="post">
+  <label for="title">学習内容:
+    <input type="text" name="title" id="">
+  </label>
+  <label for="due_date">期限日:
+    <input type="date" name="due_date" id="">
+  </label>
+  <input type="submit" value="追加"><br>
+  <?php if ($errors) : ?>
+    <ul style="color:red;">
+      <?php foreach ($errors as $error) : ?>
+        <li>
+          <?php echo h($error); ?>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+  <?php endif; ?>
+  </form>
 
 <h2>未達成</h2>
   <ul>

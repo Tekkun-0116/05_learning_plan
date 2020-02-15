@@ -21,17 +21,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $due_date = $_POST['due_date'];
   
   $errors = [];
+
+  if ($title == '') {
+    $errors['title'] = 'タスク名が未入力です';
+  }
+
+  if ($due_date == '') {
+    $errors['due_date'] = '期限日が未入力です';
+  }
   
   if ($title == $plan['title']) {
     $errors['title'] = 'タスク名が変更されていません';
   }
 
   if ($due_date == $plan['due_date']) {
-    $errors['due_date'] = '日付が変更されていません';
+    $errors['due_date'] = '期限が変更されていません';
   }
 
   if (empty($errors)) {
-    $sql = "update plans set title = :title," . "due_date = :due_date" . "update_at = now()" . "where id = :id";
+    $sql = "update plans set title = :title, due_date = :due_date, update_at = now() where id = :id";
 
     $stmt = $dbh->prepare($sql);
     $stmt->bindParam(":title", $title);
@@ -70,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </li>
         <?php endforeach; ?>
       </ul>
-    <? endif; ?>
+    <?php endif; ?>
     </form>
   </p>
   </form>
