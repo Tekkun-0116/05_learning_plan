@@ -6,13 +6,13 @@ require_once('functions.php');
 $dbh = connectDb();
 
 // レコードの取得(未完了)
-$sql = "select * from plans where status = 'notyet'";
+$sql = "select * from plans where status = 'notyet' order by due_date asc";
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 $notyet_plans = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // レコードの取得(完成の場合)
-$sql2 = "select * from plans where status = 'done'";
+$sql2 = "select * from plans where status = 'done' order by due_date desc";
 $stmt = $dbh->prepare($sql2);
 $stmt->execute();
 $done_plans = $stmt->fetchAll(PDO::FETCH_ASSOC);

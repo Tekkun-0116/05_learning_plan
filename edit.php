@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   if (empty($errors)) {
-    $sql = "update plans set title = :title, due_date = :due_date, update_at = now() where id = :id";
+    $sql = "update plans set title = :title, due_date = :due_date, updated_at = now() where id = :id";
 
     $stmt = $dbh->prepare($sql);
     $stmt->bindParam(":title", $title);
