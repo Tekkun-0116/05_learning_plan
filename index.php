@@ -40,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(":due_date", $due_date);
     $stmt->execute();
 
-    // index.phpに戻る
     header('Location: index.php');
     exit;
   }
