@@ -62,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <label for="title">学習内容:
     <input type="text" name="title" id="">
   </label>
+  <br>
   <label for="due_date">期限日:
     <input type="date" name="due_date" id="">
   </label>
