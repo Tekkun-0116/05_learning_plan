@@ -102,3 +102,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </li>
     <?php endforeach; ?>
   </ul>
+</body>
+</html>
