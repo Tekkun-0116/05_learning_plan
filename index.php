@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </label>
   <input type="submit" value="追加"><br>
   <?php if ($errors) : ?>
-    <ul style="color:red;">
+    <ul class="expired">
       <?php foreach ($errors as $error) : ?>
         <li>
           <?php echo h($error); ?>

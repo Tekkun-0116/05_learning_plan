@@ -61,27 +61,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>編集</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>編集</h1>
-  <p>
+
   <form action="" method="post">
+  <label for="title">目標内容:
     <input type="text" name="title" id="" value="<?php echo h($plan['title']); ?>">
-    期限日:
+  </label>
+  <label for="due_date">期限日:
     <input type="date" name="due_date" id="" value="<?php echo  h($plan['due_date']); ?>"> 
-    <input type="submit" value="編集"><br>
-    <?php if ($errors) : ?>
-      <ul style="color:red;">
-        <?php foreach ($errors as $error) : ?>
-          <li>
-            <?php echo h($error); ?>
-          </li>
-        <?php endforeach; ?>
-      </ul>
-    <?php endif; ?>
-    </form>
-  </p>
+  </label>
+  <input type="submit" value="編集"><br>
+  <?php if ($errors) : ?>
+    <ul class="expired">
+      <?php foreach ($errors as $error) : ?>
+        <li>
+          <?php echo h($error); ?>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+  <?php endif; ?>
   </form>
-  </p>
 </body>
 </html>
